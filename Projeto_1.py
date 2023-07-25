@@ -97,6 +97,20 @@ animais = list(animal.values())
 Animais_Keys = list(animal.keys())
 Mordida_Onde = list(where_Bitten.values())
 
+count = 0
+count_all = 0
+while count_all < gen["UNKNOWN"] :
+    if count < 13 :
+        gen["MALE"] = gen["MALE"] + 1
+        count += 1
+        count_all += 1
+    if count < 20 and count > 12:
+        gen["FEMALE"] = gen["FEMALE"] + 1
+        count += 1
+        count_all += 1
+    if count == 20 :
+        count = 0
+
 
 labels_a2 = [f'{Animais_Keys[1]} ({animais[1]})',f'{Animais_Keys[0]} ({animais[0]})']
 cores_a2 = ['green','gray']
@@ -109,6 +123,12 @@ animais = animais[2:]
 
 labels_g = [f'female({generos[0]})',f'male ({generos[1]})',f'unknown ({generos[2]})']
 cores_g = ['blue','red','gray']
+
+
+generos2 = list(gen.values())[:2]
+labels_g2 = [f'female({generos2[0]})',f'male ({generos2[1]})']
+cores_g2 = ['pink', 'blue']
+
 
 labels_where = [f'BODY({Mordida_Onde[0]})',f'HEAD({Mordida_Onde[1]})',f'UNKNOWN({Mordida_Onde[2]})']
 
@@ -136,9 +156,14 @@ fig = plt.figure(figsize=(10,10))
 # ax4.set_title('Modidas por Localização da Mordida')
 # ax4 = plt.pie(Mordida_Onde, labels=labels_where, colors=cores_g, autopct='%1.1f%%')
 
+# Plote de mordidas por gênero
+ax5 = fig.add_subplot(1,1,1)
+ax5.set_title('Mordidas por Gênero 2')
+ax5 = plt.pie(generos2, labels=labels_g2, colors=cores_g2, autopct='%1.1f%%')
+
 # Plote de mordidas vacinadas por raças de cães
-plt.plot(list(bite_without_vacination.keys()),list(bite_without_vacination.values()))
-plt.xticks(rotation=90, ha='right')
+# plt.plot(list(bite_without_vacination.keys()),list(bite_without_vacination.values()))
+# plt.xticks(rotation=90, ha='right')
 
 
 # # Plote para função de quantidade de mordidas X tempo
